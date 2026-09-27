@@ -1,0 +1,145 @@
+{
+  "entries": [
+    {
+      "model_id": "champion-ensemble-v1",
+      "name": "ensemble v1",
+      "status": "CHAMPION",
+      "model_type": "ensemble",
+      "category": null,
+      "horizon_hours": null,
+      "features_version": null,
+      "calibration_version": null,
+      "conformal_version": null,
+      "metrics": {
+        "overall": {
+          "mae": 4.994,
+          "quantile_loss_50": 2.4979999999999998,
+          "ece": 0.057142857142857134,
+          "coverage_abs_err": 0.09999999999999998,
+          "directional_accuracy": 0.7818400000000001,
+          "stability": 0.7673,
+          "n": 60
+        },
+        "per_horizon": {
+          "1": {
+            "mae": 5.36,
+            "rmse": 6.85,
+            "n": 12,
+            "quantile_loss_50": 2.68,
+            "directional_accuracy": 0.7273,
+            "stability": 0.6756
+          },
+          "2": {
+            "mae": 4.88,
+            "rmse": 6.34,
+            "n": 12,
+            "quantile_loss_50": 2.44,
+            "directional_accuracy": 0.7273,
+            "stability": 0.7152
+          },
+          "3": {
+            "mae": 5.13,
+            "rmse": 6.24,
+            "n": 12,
+            "quantile_loss_50": 2.57,
+            "directional_accuracy": 0.8182,
+            "stability": 0.7909
+          },
+          "4": {
+            "mae": 5.06,
+            "rmse": 6.14,
+            "n": 12,
+            "quantile_loss_50": 2.53,
+            "directional_accuracy": 0.8182,
+            "stability": 0.8485
+          },
+          "5": {
+            "mae": 4.54,
+            "rmse": 5.99,
+            "n": 12,
+            "quantile_loss_50": 2.27,
+            "directional_accuracy": 0.8182,
+            "stability": 0.8063
+          }
+        },
+        "category": null
+      },
+      "metadata_": {},
+      "created_at": "2026-08-11T17:13:23.818781+00:00",
+      "promoted_at": null,
+      "retired_at": null,
+      "notes": null
+    },
+    {
+      "model_id": "challenger-baseline-v1",
+      "name": "baseline challenger",
+      "status": "CANDIDATE",
+      "model_type": "ensemble",
+      "category": null,
+      "horizon_hours": null,
+      "features_version": null,
+      "calibration_version": null,
+      "conformal_version": null,
+      "metrics": {
+        "overall": {
+          "mae": 4.994,
+          "quantile_loss_50": 2.4979999999999998,
+          "ece": 0.057142857142857134,
+          "coverage_abs_err": 0.09999999999999998,
+          "directional_accuracy": 0.7818400000000001,
+          "stability": 0.7673,
+          "n": 60
+        },
+        "per_horizon": {
+          "1": {
+            "mae": 5.36,
+            "rmse": 6.85,
+            "n": 12,
+            "quantile_loss_50": 2.68,
+            "directional_accuracy": 0.7273,
+            "stability": 0.6756
+          },
+          "2": {
+            "mae": 4.88,
+            "rmse": 6.34,
+            "n": 12,
+            "quantile_loss_50": 2.44,
+            "directional_accuracy": 0.7273,
+            "stability": 0.7152
+          },
+          "3": {
+            "mae": 5.13,
+            "rmse": 6.24,
+            "n": 12,
+            "quantile_loss_50": 2.57,
+            "directional_accuracy": 0.8182,
+            "stability": 0.7909
+          },
+          "4": {
+            "mae": 5.06,
+            "rmse": 6.14,
+            "n": 12,
+            "quantile_loss_50": 2.53,
+            "directional_accuracy": 0.8182,
+            "stability": 0.8485
+          },
+          "5": {
+            "mae": 4.54,
+            "rmse": 5.99,
+            "n": 12,
+            "quantile_loss_50": 2.27,
+            "directional_accuracy": 0.8182,
+            "stability": 0.8063
+          }
+        },
+        "category": null
+      },
+      "metadata_": {},
+      "created_at": "2026-08-11T17:13:23.819780+00:00",
+      "promoted_at": null,
+      "retired_at": null,
+      "notes": null
+    }
+  ],
+  "updated_at": "2026-08-11T17:13:23.819780+00:00"
+}

@@ -1,0 +1,67 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    container_name: pricepilot-db
+    environment:
+      POSTGRES_USER: pricepilot
+      POSTGRES_PASSWORD: pricepilot
+      POSTGRES_DB: pricepilot
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pricepilot -d pricepilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: pricepilot-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/api.Dockerfile
+    container_name: pricepilot-api
+    environment:
+      DATABASE_URL: postgresql+asyncpg://pricepilot:pricepilot@db:5432/pricepilot
+      REDIS_URL: redis://redis:6379/0
+      MODEL_REGISTRY_DIR: /app/ml/model_registry
+      CALIBRATION_STORE_DIR: /app/ml/model_registry/calibration
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+  web:
+    build:
+      context: apps/web
+      dockerfile: ../../infrastructure/docker/web.Dockerfile
+    container_name: pricepilot-web
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/web:/app
+    depends_on:
+      - api
+
+volumes:
+  pgdata:

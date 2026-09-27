@@ -1,0 +1,9 @@
+This is a placeholder file. For a production build, you should replace this with an actual PNG icon file (256x256 pixels recommended).
+
+You can create an icon using tools like:
+- GIMP (free)
+- Photoshop
+- Online icon generators
+- Windows Paint (for basic icons)
+
+For now, Electron will use a default icon or you can specify a different icon file in the electron-builder configuration.

@@ -1,0 +1,1 @@
+"""Product identity service package."""

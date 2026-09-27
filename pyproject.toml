@@ -1,0 +1,50 @@
+[project]
+name = "pricepilot"
+version = "0.1.0"
+description = "PricePilot - rigorous price forecasting and shopping-decision engine"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "sqlalchemy[asyncio]>=2.0",
+    "aiosqlite>=0.20",
+    "alembic>=1.13",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "apscheduler>=3.10",
+    "diskcache>=5.6",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scikit-learn>=1.4",
+    "scipy>=1.12",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+ml = ["statsmodels>=0.14", "lightgbm>=4.3"]
+dl = ["torch>=2.2"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.4"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["packages", "services", "ml"]
+include = [
+    "database*", "schemas*", "events*", "common*",
+    "price_engine*", "prediction_engine*", "ai_agent*", "alert_engine*", "api*",
+    "ml*",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["services", "packages", "ml"]
+
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
