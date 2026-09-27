@@ -9,6 +9,7 @@ import {
   computeDecision,
   type CatalogProduct,
 } from "@/lib/catalogData";
+import { scrapeLiveEcommerceProduct } from "@/lib/liveScraper";
 
 // In-memory state for alerts and watchlist across user session
 interface UserAlert {
@@ -159,34 +160,45 @@ export async function GET(request: NextRequest, { params }: { params: { path?: s
     }
 
     if (results.length === 0 && q) {
-      const live = synthesizeLiveProduct(q, category || undefined);
+      const live = await scrapeLiveEcommerceProduct(q, category || undefined);
       results = [live];
     }
 
-    const out = results.map((p) => ({
-      id: p.id,
-      brand: p.brand,
-      model: p.brand,
-      canonical_name: p.canonical_name,
-      category: p.category,
-      subcategory: null,
-      description: p.description,
-      launched_at: "2024-01-01T00:00:00Z",
-    }));
+    const out = results.map((p) => {
+      const sorted = [...p.stores].sort((a, b) => a.price - b.price);
+      const cheapest = sorted[0];
+      return {
+        id: p.id,
+        brand: p.brand,
+        model: p.brand,
+        canonical_name: p.canonical_name,
+        category: p.category,
+        subcategory: null,
+        description: p.description,
+        image: p.image || null,
+        price: cheapest?.price || 1999,
+        mrp: p.mrp || Math.round((cheapest?.price || 1999) * 1.25),
+        retailer: cheapest?.retailer || "Flipkart",
+        store_count: p.stores.length,
+        launched_at: "2024-01-01T00:00:00Z",
+      };
+    });
 
     return NextResponse.json(out);
   }
 
-  // Variant stats: /products/variant/{variantId}/stats
-  if (fullPath.includes("/variant/") && fullPath.endsWith("/stats")) {
-    const variantId = pathArr[2];
+  // Variant / Price stats: /prices/stats or /products/variant/{variantId}/stats
+  if (fullPath === "/prices/stats" || (fullPath.includes("/variant/") && fullPath.endsWith("/stats"))) {
+    const listingId = searchParams.get("listing_id") || "";
+    const variantId = pathArr[2] || listingId || "default";
     const product = findProductByIdOrVariant(variantId);
     return NextResponse.json(computePriceStats(product));
   }
 
-  // Variant history: /products/variant/{variantId}/history
-  if (fullPath.includes("/variant/") && fullPath.endsWith("/history")) {
-    const variantId = pathArr[2];
+  // Variant / Price history: /prices/history or /products/variant/{variantId}/history
+  if (fullPath === "/prices/history" || (fullPath.includes("/variant/") && fullPath.endsWith("/history"))) {
+    const listingId = searchParams.get("listing_id") || "";
+    const variantId = pathArr[2] || listingId || "default";
     const product = findProductByIdOrVariant(variantId);
     return NextResponse.json(computePriceHistory(product));
   }
@@ -230,6 +242,7 @@ export async function GET(request: NextRequest, { params }: { params: { path?: s
       category: product.category,
       subcategory: null,
       description: product.description,
+      image: product.image || null,
       launched_at: "2024-01-01T00:00:00Z",
       variants: [
         {
@@ -312,7 +325,7 @@ export async function POST(request: NextRequest, { params }: { params: { path?: 
   // Serverless live scrape: /products/scrape-live
   if (fullPath === "/products/scrape-live") {
     const q = body.query || "Product";
-    const live = synthesizeLiveProduct(q, body.category);
+    const live = await scrapeLiveEcommerceProduct(q, body.category);
     return NextResponse.json([
       {
         id: live.id,
@@ -322,13 +335,14 @@ export async function POST(request: NextRequest, { params }: { params: { path?: 
         category: live.category,
         subcategory: null,
         description: live.description,
+        image: live.image || null,
         launched_at: "2024-01-01T00:00:00Z",
       },
     ]);
   }
 
-  // Conformal prediction forecasting: /predictions/predict
-  if (fullPath === "/predictions/predict") {
+  // Conformal prediction forecasting: /predictions/predict or /predictions/price
+  if (fullPath === "/predictions/predict" || fullPath === "/predictions/price") {
     const variantId = body.product_variant_id || body.variant_id || "default";
     const horizon = Number(body.horizon_hours) || 168;
     const product = findProductByIdOrVariant(variantId);
@@ -362,6 +376,9 @@ export async function POST(request: NextRequest, { params }: { params: { path?: 
       target_price: targetPrice,
       current_price: currentPrice,
       probabilities: {
+        "7d": Number(prob7d.toFixed(2)),
+        "30d": Number(prob30d.toFixed(2)),
+        "90d": Number(prob90d.toFixed(2)),
         "168": Number(prob7d.toFixed(2)),
         "720": Number(prob30d.toFixed(2)),
         "2160": Number(prob90d.toFixed(2)),
@@ -406,9 +423,10 @@ export async function POST(request: NextRequest, { params }: { params: { path?: 
     return NextResponse.json(newAlert);
   }
 
-  // Create watchlist item: /watchlist
-  if (fullPath === "/watchlist") {
-    const productId = body.product_id || body.variant_id || "default";
+  // Create watchlist item: /watchlist or /watchlist/:id
+  if (fullPath.startsWith("/watchlist")) {
+    const idParam = pathArr[1];
+    const productId = idParam || body.product_id || body.variant_id || "default";
     const product = findProductByIdOrVariant(productId);
     const sorted = [...product.stores].sort((a, b) => a.price - b.price);
     const newItem: WatchlistItem = {

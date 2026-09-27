@@ -7,8 +7,8 @@ import { AuthProvider } from "@/lib/authContext";
 import { OrderProvider } from "@/lib/orderContext";
 
 export const metadata: Metadata = {
-  title: "PricePilot - Real-Time Price Comparison & Deal Finder",
-  description: "Real-time product search, price comparisons across Flipkart, Amazon India, Meesho, Myntra, and predictive price drop tracking",
+  title: "ShoppingOS — Universal Price Intelligence & Deals Terminal",
+  description: "Search any product in India. Real-time live price comparison across Amazon India, Flipkart, Meesho, Croma, and Reliance Digital with 90% conformal price drop forecasting.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

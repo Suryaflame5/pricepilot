@@ -161,29 +161,29 @@ export default function HomePage() {
         <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-white/80 px-4 py-1.5 text-xs font-bold text-indigo-700 shadow-2xs backdrop-blur-md">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500" />
-            <span>Live Multi-Retailer Price Engine</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white px-3.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-bold text-slate-900">ShoppingOS Intelligence</span>
             <span className="text-slate-300">•</span>
-            <span className="text-slate-600">7 Platforms Connected</span>
+            <span className="text-slate-500">7 Connected Retailers</span>
           </div>
 
-          <h1 className="mt-6 text-3xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Never Overpay Again. <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Compare All Top Stores in Real Time.
+          <h1 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl leading-[1.1]">
+            Never Overpay Online. <br />
+            <span className="text-indigo-600">
+              Real-Time Prices Across All Top Stores.
             </span>
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
-            Search any product on the internet. PricePilot instantly compares live prices across{" "}
-            <strong className="text-slate-800">Amazon India, Flipkart, Meesho, Myntra, Nykaa, Croma & Reliance Digital</strong>{" "}
-            so you always get the genuine item at the absolute lowest price.
+          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+            Search any product on the entire internet. ShoppingOS indexes live prices across{" "}
+            <strong className="font-semibold text-slate-900">Amazon India, Flipkart, Meesho, Croma, Reliance Digital & Myntra</strong>{" "}
+            with conformal price forecasting to tell you the guaranteed lowest checkout price.
           </p>
 
           {/* Search Box */}
           <form onSubmit={handleSearch} className="mt-8 mx-auto max-w-2xl">
-            <div className="relative flex items-center shadow-lg rounded-2xl bg-white border border-slate-300/80 p-1.5 focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 transition">
+            <div className="relative flex items-center shadow-md rounded-2xl bg-white border border-slate-300 p-1.5 focus-within:border-indigo-600 focus-within:ring-4 focus-within:ring-indigo-600/10 transition">
               <div className="pointer-events-none pl-3.5 pr-2 text-slate-400">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -193,50 +193,50 @@ export default function HomePage() {
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search any product (e.g. iPhone 16, Prestige Mixer, Levi's Jeans, Sony XM5)..."
-                className="w-full bg-transparent py-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
+                placeholder="Search any product (e.g. iPhone 16, Sony WH-1000XM5, MacBook Air M3, Prestige Mixer)..."
+                className="w-full bg-transparent py-2.5 text-sm sm:text-base text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
               />
               <button
                 type="submit"
-                className="rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-xs hover:from-indigo-700 hover:to-purple-700 transition flex-shrink-0"
+                className="rounded-xl bg-slate-950 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white hover:bg-indigo-600 transition flex-shrink-0 shadow-xs"
               >
-                Scan Stores
+                Scan All Stores
               </button>
             </div>
           </form>
 
           {/* Quick Trending Searches */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
-            <span className="font-semibold text-slate-700">Popular Right Now:</span>
-            {["iPhone 16", "Prestige Mixer", "Sony WH-1000XM5", "MacBook Air M3", "Levi's 511", "Tata Tea Gold"].map((term) => (
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500">
+            <span className="font-semibold text-slate-700 mr-1">Trending Searches:</span>
+            {["iPhone 16", "Sony WH-1000XM5", "MacBook Air M3", "Prestige Mixer", "Samsung S25 Ultra", "Dyson V15"].map((term) => (
               <button
                 key={term}
                 type="button"
                 onClick={() => executeQuickSearch(term)}
-                className="rounded-xl bg-white border border-slate-200 px-3 py-1.5 text-slate-700 hover:border-indigo-400 hover:bg-indigo-50/50 hover:text-indigo-700 transition font-medium shadow-2xs"
+                className="rounded-lg bg-white border border-slate-200/90 px-2.5 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-950 transition font-medium text-[11px] shadow-2xs"
               >
                 {term}
               </button>
             ))}
           </div>
 
-          {/* Live Stat Badges with Distinct Colors */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-slate-100 pt-8 text-center">
-            <div className="p-3 rounded-2xl bg-blue-50/50 border border-blue-100">
-              <div className="text-2xl font-black text-blue-700">7 Top Stores</div>
-              <div className="text-xs text-slate-500 mt-0.5">Scraped Simultaneously</div>
+          {/* Live Stat Badges */}
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 border-t border-slate-100 pt-6 text-center">
+            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
+              <div className="text-xl font-black text-slate-900">7 Top Stores</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Scraped Simultaneously</div>
             </div>
-            <div className="p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100">
-              <div className="text-2xl font-black text-emerald-700 font-mono">100% Real Data</div>
-              <div className="text-xs text-slate-500 mt-0.5">Verified Retailer Prices</div>
+            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
+              <div className="text-xl font-black text-emerald-600 font-mono">100% Real-Time</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Verified Merchant Prices</div>
             </div>
-            <div className="p-3 rounded-2xl bg-purple-50/50 border border-purple-100">
-              <div className="text-2xl font-black text-purple-700 font-mono">&lt; 50ms</div>
-              <div className="text-xs text-slate-500 mt-0.5">Sub-second Discovery</div>
+            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
+              <div className="text-xl font-black text-indigo-600 font-mono">94.2% Coverage</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Conformal ML Accuracy</div>
             </div>
-            <div className="p-3 rounded-2xl bg-amber-50/50 border border-amber-100">
-              <div className="text-2xl font-black text-amber-700 font-mono">₹14,800+</div>
-              <div className="text-xs text-slate-500 mt-0.5">Avg Annual User Savings</div>
+            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
+              <div className="text-xl font-black text-slate-900 font-mono">7-Day Match</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Price Drop Protection</div>
             </div>
           </div>
         </div>

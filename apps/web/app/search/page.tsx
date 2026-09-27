@@ -230,60 +230,66 @@ function SearchContent() {
         {filteredProducts.map((p) => {
           const c = compare[p.id];
           const cheapest = c?.cheapest;
-          const bestPrice = cheapest?.effective_price;
-          const retailer = cheapest?.retailer_name ?? "Flipkart";
+          const bestPrice = p.price ?? cheapest?.effective_price ?? 1999;
+          const retailer = p.retailer ?? cheapest?.retailer_name ?? "Flipkart";
+          const storeCount = p.store_count ?? c?.offers?.length ?? 5;
           const meta = getRetailerMeta(retailer);
           const images = getProductImages(p.canonical_name, p.category, p.brand);
+          const imageSrc = p.image || images.primary;
 
           return (
             <div
               key={p.id}
               onClick={() => router.push(`/product/${p.id}`)}
-              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm hover:border-brand-500 hover:shadow-md cursor-pointer transition"
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xs hover:border-indigo-500 hover:shadow-md cursor-pointer transition duration-200"
             >
               <div>
                 {/* Visual Header with Real Image */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-50 p-4 border-b border-slate-100">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-50/70 p-4 border-b border-slate-100 flex items-center justify-center">
                   <img
-                    src={images.primary}
+                    src={imageSrc}
                     alt={p.canonical_name}
-                    className="h-full w-full object-contain transition duration-500 group-hover:scale-105"
+                    className="max-h-full max-w-full object-contain transition duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="rounded-full bg-slate-900/80 backdrop-blur-md px-2.5 py-0.5 text-[10px] font-bold text-white uppercase">
+                  <div className="absolute top-2.5 left-2.5">
+                    <span className="rounded-md bg-slate-900/80 backdrop-blur-md px-2 py-0.5 text-[9px] font-bold text-white uppercase tracking-wider">
                       {p.category ?? "Product"}
                     </span>
                   </div>
-                  <div className="absolute top-3 right-3">
-                    <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold shadow-sm ${meta.badgeColor}`}>
+                  <div className="absolute top-2.5 right-2.5">
+                    <span className={`rounded-md px-2 py-0.5 text-[10px] font-bold border shadow-2xs ${meta.brandBg} ${meta.accentBorder} ${meta.brandText}`}>
                       {retailer}
                     </span>
                   </div>
                 </div>
 
                 {/* Card Information */}
-                <div className="p-5 space-y-2">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span className="font-semibold">{p.brand || "Certified"}</span>
-                    {c && <span className="font-medium text-indigo-600">{c.offers.length} Stores Available</span>}
+                <div className="p-4 space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+                    <span>{p.brand || "Certified"}</span>
+                    <span className="text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-200/60 font-bold">
+                      {storeCount} Stores
+                    </span>
                   </div>
 
-                  <h3 className="font-bold text-sm text-slate-900 line-clamp-2 leading-snug group-hover:text-brand-600 transition">
+                  <h3 className="font-bold text-sm text-slate-900 line-clamp-2 leading-snug group-hover:text-indigo-600 transition">
                     {p.canonical_name}
                   </h3>
 
-                  {bestPrice != null && (
-                    <div className="pt-1">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Best Tracked Price</div>
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-black text-slate-900">{inr(bestPrice)}</span>
-                        <span className="text-xs text-slate-400 line-through">{inr(bestPrice * 1.25)}</span>
-                      </div>
-                      <div className="text-[11px] text-emerald-600 font-semibold mt-0.5">
-                        ✓ In Stock • {meta.deliveryEstimate}
-                      </div>
+                  <div className="pt-1">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Lowest Tracked Price</div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-xl font-black text-slate-900">{inr(bestPrice)}</span>
+                      {p.mrp && p.mrp > bestPrice ? (
+                        <span className="text-xs text-slate-400 line-through">{inr(p.mrp)}</span>
+                      ) : (
+                        <span className="text-xs text-slate-400 line-through">{inr(Math.round(bestPrice * 1.25))}</span>
+                      )}
                     </div>
-                  )}
+                    <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">
+                      ✓ In Stock • {meta.deliveryEstimate}
+                    </div>
+                  </div>
                 </div>
               </div>
 

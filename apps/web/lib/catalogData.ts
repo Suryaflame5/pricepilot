@@ -8,6 +8,7 @@ export interface CatalogProduct {
   description: string;
   variant_id: string;
   mrp: number;
+  image?: string;
   stores: {
     retailer: string;
     price: number;
@@ -16,6 +17,7 @@ export interface CatalogProduct {
     rating: number;
     reviews: number;
     inStock: boolean;
+    badge?: string;
   }[];
 }
 

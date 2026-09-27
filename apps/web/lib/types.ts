@@ -7,6 +7,11 @@ export interface Product {
   subcategory: string | null;
   description: string | null;
   launched_at: string | null;
+  image?: string | null;
+  price?: number;
+  mrp?: number;
+  retailer?: string;
+  store_count?: number;
 }
 
 export interface Variant {
