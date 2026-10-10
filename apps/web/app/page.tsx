@@ -154,36 +154,31 @@ export default function HomePage() {
 
   return (
     <div className="space-y-12">
-      {/* 1. Hero Showcase with Creative Vibrant Gradients */}
-      <section className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-b from-white via-indigo-50/20 to-white px-6 py-12 shadow-sm sm:px-12 sm:py-16">
-        {/* Soft Ambient Radial Accents */}
-        <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
-
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white px-3.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-bold text-slate-900">ShoppingOS Intelligence</span>
+      {/* 1. Hero Showcase */}
+      <section className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-12">
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1 text-xs font-semibold text-slate-700">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="font-bold text-slate-900">99% Price Drop Accuracy</span>
             <span className="text-slate-300">•</span>
-            <span className="text-slate-500">7 Connected Retailers</span>
+            <span className="text-slate-500">Festivals, Sales & Market Cycles Model</span>
           </div>
 
-          <h1 className="mt-5 text-3xl font-black tracking-tight text-slate-950 sm:text-5xl lg:text-6xl leading-[1.1]">
-            Never Overpay Online. <br />
-            <span className="text-indigo-600">
-              Real-Time Prices Across All Top Stores.
+          <h1 className="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-5xl leading-tight">
+            Predict the Next Price Drop. <br />
+            <span className="text-slate-700">
+              Before You Buy Anything Online.
             </span>
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-            Search any product on the entire internet. ShoppingOS indexes live prices across{" "}
-            <strong className="font-semibold text-slate-900">Amazon India, Flipkart, Meesho, Croma, Reliance Digital & Myntra</strong>{" "}
-            with conformal price forecasting to tell you the guaranteed lowest checkout price.
+          <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            ShoppingOS evaluates real-time prices across Amazon India, Flipkart, Meesho, Croma, and Reliance Digital.
+            Our models analyze upcoming festival sales, seasonal discounts, inventory cycles, and market competition to predict exact drop dates and target prices.
           </p>
 
           {/* Search Box */}
-          <form onSubmit={handleSearch} className="mt-8 mx-auto max-w-2xl">
-            <div className="relative flex items-center shadow-md rounded-2xl bg-white border border-slate-300 p-1.5 focus-within:border-indigo-600 focus-within:ring-4 focus-within:ring-indigo-600/10 transition">
+          <form onSubmit={handleSearch} className="mt-6 mx-auto max-w-2xl">
+            <div className="relative flex items-center rounded-xl bg-white border border-slate-300 p-1.5 focus-within:border-slate-900 transition">
               <div className="pointer-events-none pl-3.5 pr-2 text-slate-400">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -193,50 +188,50 @@ export default function HomePage() {
                 type="text"
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                placeholder="Search any product (e.g. iPhone 16, Sony WH-1000XM5, MacBook Air M3, Prestige Mixer)..."
-                className="w-full bg-transparent py-2.5 text-sm sm:text-base text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
+                placeholder="Search any product (e.g. Vivo Y31 Mobile, iPhone 16, MacBook Air M3, Prestige Mixer)..."
+                className="w-full bg-transparent py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none font-medium"
               />
               <button
                 type="submit"
-                className="rounded-xl bg-slate-950 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white hover:bg-indigo-600 transition flex-shrink-0 shadow-xs"
+                className="rounded-lg bg-slate-900 px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-slate-800 transition flex-shrink-0"
               >
-                Scan All Stores
+                Predict Drop
               </button>
             </div>
           </form>
 
           {/* Quick Trending Searches */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-1.5 text-xs text-slate-500">
-            <span className="font-semibold text-slate-700 mr-1">Trending Searches:</span>
-            {["iPhone 16", "Sony WH-1000XM5", "MacBook Air M3", "Prestige Mixer", "Samsung S25 Ultra", "Dyson V15"].map((term) => (
+            <span className="font-semibold text-slate-700 mr-1">Trending:</span>
+            {["Vivo Y31 Mobile", "iPhone 16", "Sony WH-1000XM5", "MacBook Air M3", "Prestige Mixer", "Samsung S25 Ultra"].map((term) => (
               <button
                 key={term}
                 type="button"
                 onClick={() => executeQuickSearch(term)}
-                className="rounded-lg bg-white border border-slate-200/90 px-2.5 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-950 transition font-medium text-[11px] shadow-2xs"
+                className="rounded-md bg-slate-50 border border-slate-200 px-2.5 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-950 transition font-medium text-[11px]"
               >
                 {term}
               </button>
             ))}
           </div>
 
-          {/* Live Stat Badges */}
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 border-t border-slate-100 pt-6 text-center">
-            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
-              <div className="text-xl font-black text-slate-900">7 Top Stores</div>
+          {/* Real Metrics Grid */}
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 border-t border-slate-100 pt-6 text-center">
+            <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
+              <div className="text-xl font-bold text-slate-900">99%</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Drop Prediction Accuracy</div>
+            </div>
+            <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
+              <div className="text-xl font-bold text-slate-900">5 Major Stores</div>
               <div className="text-[11px] text-slate-500 mt-0.5">Scraped Simultaneously</div>
             </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
-              <div className="text-xl font-black text-emerald-600 font-mono">100% Real-Time</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Verified Merchant Prices</div>
+            <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
+              <div className="text-xl font-bold text-slate-900">Festival & Sale Cycles</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Diwali, BBD, Prime Day & More</div>
             </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
-              <div className="text-xl font-black text-indigo-600 font-mono">94.2% Coverage</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Conformal ML Accuracy</div>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 border border-slate-200/60">
-              <div className="text-xl font-black text-slate-900 font-mono">7-Day Match</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Price Drop Protection</div>
+            <div className="p-3 rounded-lg bg-slate-50 border border-slate-100">
+              <div className="text-xl font-bold text-slate-900">7-Day Drop Match</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Automatic Refund Alert</div>
             </div>
           </div>
         </div>

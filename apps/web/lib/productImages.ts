@@ -109,6 +109,68 @@ const PRODUCT_IMAGE_MAP: Record<string, ProductImageSet> = {
     ],
     thumbnail: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=200&q=80",
   },
+  // Samsung
+  "samsung": {
+    primary: "https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?auto=format&fit=crop&w=200&q=80",
+  },
+  // Vivo / generic Android
+  "vivo": {
+    primary: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80",
+  },
+  "realme": {
+    primary: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=200&q=80",
+  },
+  "poco": {
+    primary: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=200&q=80",
+  },
+  "oneplus": {
+    primary: "https://images.unsplash.com/photo-1574920162043-b872873f19c8?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1574920162043-b872873f19c8?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1574920162043-b872873f19c8?auto=format&fit=crop&w=200&q=80",
+  },
+  "redmi": {
+    primary: "https://images.unsplash.com/photo-1607936854279-55e8a4c64888?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1607936854279-55e8a4c64888?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1607936854279-55e8a4c64888?auto=format&fit=crop&w=200&q=80",
+  },
+  "mobile": {
+    primary: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=200&q=80",
+  },
+  "smartphone": {
+    primary: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?auto=format&fit=crop&w=200&q=80",
+  },
+  "phone": {
+    primary: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80",
+  },
+  "headphone": {
+    primary: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80",
+  },
+  "earbud": {
+    primary: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=200&q=80",
+  },
+  "tv": {
+    primary: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80",
+    gallery: ["https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=800&q=80"],
+    thumbnail: "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=200&q=80",
+  },
 };
 
 // Category defaults

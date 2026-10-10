@@ -10,7 +10,11 @@ async function getApiUrl(): Promise<string> {
     }
   }
 
-  if (process.env.NEXT_PUBLIC_API_URL) {
+  if (
+    process.env.NEXT_PUBLIC_API_URL &&
+    !process.env.NEXT_PUBLIC_API_URL.includes("localhost") &&
+    !process.env.NEXT_PUBLIC_API_URL.includes("127.0.0.1")
+  ) {
     return process.env.NEXT_PUBLIC_API_URL;
   }
 

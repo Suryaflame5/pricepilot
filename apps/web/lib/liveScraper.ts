@@ -73,6 +73,30 @@ export async function scrapeLiveEcommerceProduct(query: string, category?: strin
   } else if (qLower.includes("samsung") || qLower.includes("galaxy")) {
     brand = "Samsung";
     cat = "smartphones";
+  } else if (qLower.includes("vivo")) {
+    brand = "Vivo";
+    cat = "smartphones";
+  } else if (qLower.includes("oppo")) {
+    brand = "Oppo";
+    cat = "smartphones";
+  } else if (qLower.includes("oneplus")) {
+    brand = "OnePlus";
+    cat = "smartphones";
+  } else if (qLower.includes("realme")) {
+    brand = "Realme";
+    cat = "smartphones";
+  } else if (qLower.includes("redmi") || qLower.includes("xiaomi") || qLower.includes("poco")) {
+    brand = "Xiaomi";
+    cat = "smartphones";
+  } else if (qLower.includes("motorola") || qLower.includes("moto")) {
+    brand = "Motorola";
+    cat = "smartphones";
+  } else if (qLower.includes("pixel") || qLower.includes("google")) {
+    brand = "Google";
+    cat = "smartphones";
+  } else if (qLower.includes("mobile") || qLower.includes("phone") || qLower.includes("smartphone")) {
+    brand = "Smartphone";
+    cat = "smartphones";
   } else if (qLower.includes("sony")) {
     brand = "Sony";
     cat = "audio";
@@ -234,6 +258,7 @@ export async function scrapeLiveEcommerceProduct(query: string, category?: strin
     description: `Live multi-store price comparison and conformal forecasting for ${canonicalName}. Scraped across Flipkart, Amazon India, Meesho, Croma, and Reliance Digital.`,
     variant_id: variantId,
     mrp,
+    image: imageUrl || undefined,
     stores: storeOffers,
   };
 
@@ -333,6 +358,9 @@ function estimatePriceByKeywords(query: string): number {
   if (q.includes("ipad") || q.includes("tablet")) return 32999;
   if (q.includes("tv") || q.includes("oled") || q.includes("qled")) return 45999;
   if (q.includes("sony") || q.includes("bose") || q.includes("headphone") || q.includes("xm5") || q.includes("xm4")) return 24999;
+  if (q.includes("vivo") || q.includes("oppo") || q.includes("redmi") || q.includes("realme") || q.includes("poco") || q.includes("iqoo")) return 14999;
+  if (q.includes("oneplus") || q.includes("pixel") || q.includes("nothing")) return 29999;
+  if (q.includes("mobile") || q.includes("smartphone") || q.includes("phone")) return 12999;
   if (q.includes("shoe") || q.includes("nike") || q.includes("jordan") || q.includes("sneaker")) return 4499;
   if (q.includes("airpod") || q.includes("earbud") || q.includes("tws")) return 2499;
   if (q.includes("watch")) return 6999;

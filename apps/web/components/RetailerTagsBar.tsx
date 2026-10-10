@@ -34,13 +34,13 @@ export default function RetailerTagsBar({
             key={r.id}
             type="button"
             onClick={() => onSelectRetailer && onSelectRetailer(isSelected ? null : r.id)}
-            className={`flex-shrink-0 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold border transition shadow-sm ${
+            className={`flex-shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold border transition ${
               isSelected
-                ? `${r.badgeColor} ring-2 ring-offset-1 ring-slate-400`
-                : `${r.accentBorder} bg-white text-slate-700 hover:bg-slate-50`
+                ? "bg-slate-900 border-slate-900 text-white"
+                : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50"
             }`}
           >
-            <span className="font-bold text-[10px] opacity-75">{r.logoShort}</span>
+            <span className="font-mono text-[10px] text-slate-500 font-bold">{r.logoShort}</span>
             <span>{r.displayName}</span>
           </button>
         );

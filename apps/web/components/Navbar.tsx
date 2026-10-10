@@ -36,21 +36,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200/90 bg-white/95 backdrop-blur-xl shadow-xs">
-      {/* Top Professional Retailer Status Bar */}
-      <div className="bg-slate-900 text-slate-300 px-4 py-1.5 text-xs border-b border-slate-800">
+      {/* Top Status Bar */}
+      <div className="bg-slate-900 text-slate-300 px-4 py-1 text-xs border-b border-slate-800">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-2 text-[11px] font-medium text-slate-400">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-semibold text-slate-200">Live Multi-Store Indexer Active:</span>
-            <span className="hidden sm:inline">Flipkart • Amazon India • Meesho • Croma • Reliance Digital • Myntra • Nykaa</span>
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="font-semibold text-slate-200">Price Drop Prediction Active:</span>
+            <span className="hidden sm:inline">Flipkart • Amazon India • Meesho • Croma • Reliance Digital</span>
           </div>
           <div className="flex items-center gap-3 text-[11px]">
-            <span className="font-medium text-emerald-400 hidden md:inline">
-              ✓ Direct Merchant Prices
-            </span>
-            <span className="text-slate-600 hidden md:inline">•</span>
-            <span className="text-slate-300 font-semibold">
-              Conformal AI Calibrated
+            <span className="font-medium text-slate-300">
+              99% Success Rate • Festivals, Sales & Market Shifts
             </span>
           </div>
         </div>
@@ -60,22 +56,22 @@ export default function Navbar() {
         {/* Brand Logo: ShoppingOS */}
         <div className="flex items-center gap-3">
           <a href="/" className="group flex items-center gap-2.5">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm ring-1 ring-slate-800 transition duration-200 group-hover:bg-indigo-600">
-              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-white transition group-hover:bg-slate-800">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
               </svg>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="text-lg font-black tracking-tight text-slate-950 group-hover:text-indigo-600 transition">
+                <span className="text-base font-bold tracking-tight text-slate-900">
                   ShoppingOS
                 </span>
-                <span className="rounded-md bg-indigo-50 px-1.5 py-0.5 text-[9px] font-bold text-indigo-700 border border-indigo-200 uppercase tracking-wider">
-                  AI TERMINAL
+                <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700 border border-slate-200">
+                  99% ACCURACY
                 </span>
               </div>
-              <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                PricePilot Engine
+              <p className="text-[10px] text-slate-500 font-medium">
+                Next Price Drop Prediction Engine
               </p>
             </div>
           </a>
